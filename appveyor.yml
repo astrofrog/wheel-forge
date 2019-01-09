@@ -1,0 +1,12 @@
+install:
+  - pip install .
+
+build_script:
+  - mkdir wheelhouse
+  - autowheel windows32 --output-dir=wheelhouse --ignore-existing
+  - autowheel windows64 --output-dir=wheelhouse --ignore-existing
+  - dir wheelhouse
+
+artifacts:
+  - path: "tests\\wheelhouse\\*.whl"
+    name: Wheels

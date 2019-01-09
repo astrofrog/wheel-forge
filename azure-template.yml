@@ -1,0 +1,45 @@
+jobs:
+- job: ${{ format(parameters.name) }}
+  pool:
+    ${{ if eq(parameters.os, 'macos') }}:
+      vmImage: macOS 10.13
+    ${{ if eq(parameters.os, 'linux32') }}:
+      vmImage: Ubuntu 16.04
+    ${{ if eq(parameters.os, 'linux64') }}:
+      vmImage: Ubuntu 16.04
+    ${{ if eq(parameters.os, 'windows32') }}:
+      vmImage: vs2017-win2016
+    ${{ if eq(parameters.os, 'windows64') }}:
+      vmImage: vs2017-win2016
+
+  steps:
+
+  - task: CondaEnvironment@1
+    displayName: 'Creating conda environment'
+    inputs:
+      createCustomEnvironment: True
+      environmentName: "wheels"
+      packageSpecs: "python=3.6"
+      cleanEnvironment: True
+
+  - script: pip install git+https://github.com/astrofrog/autowheel.git
+    displayName: Installing autowheel
+
+  - script: mkdir wheelhouse
+    displayName: Making wheelhouse directory
+
+  - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --ignore-existing
+    displayName: Running autowheel
+    ${{ if eq(parameters.os, 'macos') }}:
+      env:
+        CC: clang
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: wheelhouse
+      targetFolder: $(Build.ArtifactStagingDirectory)
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: wheels-${{ parameters.os }}
+      targetPath: $(Build.ArtifactStagingDirectory)

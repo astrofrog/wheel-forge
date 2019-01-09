@@ -1,7 +1,7 @@
 jobs:
 - job: ${{ format(parameters.name) }}
   pool:
-    ${{ if eq(parameters.os, 'macos') }}:
+    ${{ if eq(parameters.os, 'macosx') }}:
       vmImage: macOS 10.13
     ${{ if eq(parameters.os, 'linux32') }}:
       vmImage: Ubuntu 16.04

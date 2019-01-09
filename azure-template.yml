@@ -34,10 +34,13 @@ jobs:
       env:
         CC: clang
 
-  - task: CopyFiles@2
+  - task: ArchiveFiles@2
     inputs:
-      sourceFolder: wheelhouse
-      targetFolder: $(Build.ArtifactStagingDirectory)
+      rootFolderOrFile: wheelhouse
+      includeRootFolder: true
+      archiveType: 'tar'
+      tarCompression: 'gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/wheels_${{ parameters.os }}.tar.gz'
 
   - task: PublishPipelineArtifact@0
     inputs:

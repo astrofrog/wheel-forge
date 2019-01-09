@@ -1,5 +1,5 @@
 install:
-  - pip install .
+  - pip install git+https://github.com/astrofrog/autowheel.git
 
 build_script:
   - mkdir wheelhouse

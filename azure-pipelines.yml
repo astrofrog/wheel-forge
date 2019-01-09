@@ -2,12 +2,12 @@ jobs:
 
 - template: azure-template.yml
   parameters:
-    name: Linux
+    name: Linux 32-bit
     os: linux32
 
 - template: azure-template.yml
   parameters:
-    name: Linux
+    name: Linux 64-bit
     os: linux64
 
 - template: azure-template.yml
@@ -16,7 +16,13 @@ jobs:
     os: macosx
 
 # FIXME: cibuildwheel doesn't work on Azure yet, see appveyor.yml
+#
 # - template: azure-template.yml
 #   parameters:
-#     name: Windows
-#     os: windows
+#     name: Windows 32-bit
+#     os: windows32
+#
+# - template: azure-template.yml
+#   parameters:
+#     name: Windows 64-bit
+#     os: windows64

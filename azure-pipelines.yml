@@ -2,12 +2,12 @@ jobs:
 
 - template: azure-template.yml
   parameters:
-    name: Linux 32-bit
+    name: Linux32
     os: linux32
 
 - template: azure-template.yml
   parameters:
-    name: Linux 64-bit
+    name: Linux64
     os: linux64
 
 - template: azure-template.yml
@@ -19,10 +19,10 @@ jobs:
 #
 # - template: azure-template.yml
 #   parameters:
-#     name: Windows 32-bit
+#     name: Windows32
 #     os: windows32
 #
 # - template: azure-template.yml
 #   parameters:
-#     name: Windows 64-bit
+#     name: Windows64
 #     os: windows64

@@ -6,8 +6,8 @@ build_script:
   - autowheel windows32 --output-dir=wheelhouse --ignore-existing
   - autowheel windows64 --output-dir=wheelhouse --ignore-existing
   - dir wheelhouse
-  - 7z a wheels.zip wheelhouse
+  - 7z a wheels_windows.zip wheelhouse
 
 artifacts:
-  - path: "wheels.zip"
+  - path: "wheels_windows.zip"
     name: Wheels

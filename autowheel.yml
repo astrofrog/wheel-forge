@@ -12,7 +12,7 @@
 
 - package_name: astropy-healpix
   pin_numpy: true
-  test_command: pytest -p no:warnings --pyargs astropy_healpix
+  test_command: pytest -p no:warnings --pyargs astropy_healpix --noconftest
   test_requires: numpy==1.15.4
   python_versions:
     '0.4':
@@ -30,7 +30,7 @@
 
 - package_name: photutils
   pin_numpy: true
-  test_command: pytest -p no:warnings --pyargs photutils
+  test_command: pytest -p no:warnings --pyargs photutils --noconftest
   test_requires: numpy==1.15.4
   python_versions:
     '0.6':
@@ -48,7 +48,7 @@
 
 - package_name: regions
   pin_numpy: true
-  test_command: pytest -p no:warnings --pyargs regions
+  test_command: pytest -p no:warnings --pyargs regions --noconftest
   test_requires: numpy==1.15.4
   python_versions:
     '0.3':

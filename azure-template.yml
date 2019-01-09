@@ -30,7 +30,7 @@ jobs:
 
   - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --ignore-existing
     displayName: Running autowheel
-    ${{ if eq(parameters.os, 'macos') }}:
+    ${{ if eq(parameters.os, 'macosx') }}:
       env:
         CC: clang
 

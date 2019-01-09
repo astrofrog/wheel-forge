@@ -8,5 +8,5 @@ build_script:
   - dir wheelhouse
 
 artifacts:
-  - path: "tests\\wheelhouse\\*.whl"
+  - path: "wheelhouse\\*.whl"
     name: Wheels

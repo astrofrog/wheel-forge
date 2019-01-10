@@ -1,3 +1,7 @@
+environment:
+  global:
+    PYTHON: "C:\\Python36"
+
 install:
   - pip install git+https://github.com/astrofrog/autowheel.git
 

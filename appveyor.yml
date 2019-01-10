@@ -3,8 +3,8 @@ install:
 
 build_script:
   - mkdir wheelhouse
-  - autowheel windows32 --output-dir=wheelhouse --ignore-existing
-  - autowheel windows64 --output-dir=wheelhouse --ignore-existing
+  - autowheel windows32 --output-dir=wheelhouse
+  - autowheel windows64 --output-dir=wheelhouse
   - dir wheelhouse
   - 7z a wheels_windows.zip wheelhouse
 

@@ -16,7 +16,56 @@ jobs:
 
   - task: UsePythonVersion@0
     inputs:
+      versionSpec: '2.7'
+      architecture: 'x86'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '2.7'
+      architecture: 'x64'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.4'
+      architecture: 'x86'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.4'
+      architecture: 'x64'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.5'
+      architecture: 'x86'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.5'
+      architecture: 'x64'
+
+  - task: UsePythonVersion@0
+    inputs:
       versionSpec: '3.6'
+      architecture: 'x86'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.6'
+      architecture: 'x64'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
+      architecture: 'x86'
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
+      architecture: 'x64'
+
+  - script: pip install git+https://github.com/astrofrog/cibuildwheel.git@azure-windows
+    displayName: Installing cibuildwheel
 
   - script: pip install git+https://github.com/astrofrog/autowheel.git
     displayName: Installing autowheel

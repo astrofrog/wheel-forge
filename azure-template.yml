@@ -14,13 +14,7 @@ jobs:
 
   steps:
 
-  - task: CondaEnvironment@1
-    inputs:
-      packageSpecs: "vc=10"
-      updateConda: false
-    displayName: Install conda
-
-  - script: choco install vcpython27 vcredist2015 -f -y
+  - script: choco install vcpython27 vcredist2010 vcredist2015 -f -y
     displayName: Install Visual C
 
   - task: UsePythonVersion@0

@@ -15,6 +15,8 @@ jobs:
   steps:
 
   - task: CondaEnvironment@1
+    inputs:
+      updateConda: false
     displayName: Install conda
 
   - script: choco install vcpython27 vcredist2015 -f -y

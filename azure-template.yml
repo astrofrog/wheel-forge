@@ -14,6 +14,12 @@ jobs:
 
   steps:
 
+  - task: CondaEnvironment@1
+    inputs:
+      packageSpecs: 'msvc_runtime' # Optional
+      updateConda: false
+    displayName: Install msvc_runtime
+
   - script: choco install vcpython27 vcredist2015 -f -y
     displayName: Install Visual C
 

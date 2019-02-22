@@ -14,13 +14,8 @@ jobs:
 
   steps:
 
-  - task: CondaEnvironment@1
-    displayName: 'Creating conda environment'
-    inputs:
-      createCustomEnvironment: True
-      environmentName: "wheels"
-      packageSpecs: "python=3.6"
-      cleanEnvironment: True
+  - task: UsePythonVersion@0
+    versionSpec: '3.6'
 
   - script: pip install git+https://github.com/astrofrog/autowheel.git
     displayName: Installing autowheel
@@ -30,7 +25,7 @@ jobs:
 
   - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --ignore-existing
     displayName: Running autowheel
-    ${{ if eq(parameters.os, 'macos') }}:
+    ${{ if eq(parameters.os, 'macosx') }}:
       env:
         CC: clang
 

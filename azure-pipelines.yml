@@ -1,28 +1,50 @@
 jobs:
 
-- template: azure-template.yml
-  parameters:
-    name: Linux32
-    os: linux32
+- job: Python
+  pool:
+    vmImage: vs2017-win2016
+  strategy:
+    matrix:
+      27_32:
+        python: '2.7'
+        arch: 'x86'
+      27_64:
+        python: '2.7'
+        arch: 'x64'
+      34_32:
+        python: '3.4'
+        arch: 'x86'
+      34_64:
+        python: '3.4'
+        arch: 'x64'
+      35_32:
+        python: '3.5'
+        arch: 'x86'
+      35_64:
+        python: '3.5'
+        arch: 'x64'
+      36_32:
+        python: '3.6'
+        arch: 'x86'
+      36_64:
+        python: '3.6'
+        arch: 'x64'
+      37_32:
+        python: '3.7'
+        arch: 'x86'
+      37_64:
+        python: '3.7'
+        arch: 'x64'
 
-- template: azure-template.yml
-  parameters:
-    name: Linux64
-    os: linux64
+  steps:
 
-- template: azure-template.yml
-  parameters:
-    name: MacOSX
-    os: macosx
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: $(python)
+      architecture: $(arch)
 
-# FIXME: cibuildwheel doesn't work on Azure yet, see appveyor.yml
-#
-# - template: azure-template.yml
-#   parameters:
-#     name: Windows32
-#     os: windows32
-#
-# - template: azure-template.yml
-#   parameters:
-#     name: Windows64
-#     os: windows64
+  - script: pip install numpy
+    displayName: Installing numpy
+
+  - script: "pip install fast-histogram --no-binary :all:"
+    displayName: Installing fast-histogram

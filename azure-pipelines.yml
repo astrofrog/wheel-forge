@@ -43,8 +43,5 @@ jobs:
       versionSpec: $(python)
       architecture: $(arch)
 
-  - script: pip install numpy
+  - script: "pip install numpy --no-binary :all:"
     displayName: Installing numpy
-
-  - script: "pip install fast-histogram --no-binary :all:"
-    displayName: Installing fast-histogram

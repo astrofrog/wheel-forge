@@ -28,7 +28,7 @@ jobs:
   - script: mkdir wheelhouse
     displayName: Making wheelhouse directory
 
-  - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --ignore-existing
+  - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse
     displayName: Running autowheel
     ${{ if eq(parameters.os, 'macos') }}:
       env:

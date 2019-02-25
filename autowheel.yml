@@ -1,6 +1,6 @@
 - package_name: astropy
   pin_numpy: true
-  test_command: pytest -p no:warnings --pyargs astropy.time
+  test_command: python -c "import astropy; astropy.test(package='time')"
   test_requires: pytest numpy==1.15.4 pytest-astropy
   python_versions:
     '2.0.0':

@@ -3,7 +3,7 @@
   test_command: python -c "import astropy; astropy.test(package='time')"
   test_requires: pytest numpy==1.15.4 pytest-astropy
   python_versions:
-    '2.0.0':
+    '2.0.12':
       - cp27
       - cp35
       - cp36

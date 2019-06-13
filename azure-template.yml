@@ -11,6 +11,16 @@ jobs:
       vmImage: vs2017-win2016
     ${{ if eq(parameters.os, 'windows64') }}:
       vmImage: vs2017-win2016
+  strategy:
+    matrix:
+      fast-histogram:
+        package: fast-histogram
+      fast-histogram:
+        package: reproject
+      fast-histogram:
+        package: photutils
+      fast-histogram:
+        package: regions
 
   steps:
 
@@ -38,7 +48,7 @@ jobs:
   - script: mkdir wheelhouse
     displayName: Making wheelhouse directory
 
-  - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --build-existing
+  - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --build-existing --package=$(package)
     displayName: Running autowheel
     ${{ if eq(parameters.os, 'macos') }}:
       env:

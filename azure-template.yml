@@ -15,12 +15,14 @@ jobs:
     matrix:
       fast-histogram:
         package: fast-histogram
-      fast-histogram:
+      reproject:
         package: reproject
-      fast-histogram:
+      photutils:
         package: photutils
-      fast-histogram:
+      regions:
         package: regions
+      astropy-healpix:
+        package: astropy-healpix
 
   steps:
 

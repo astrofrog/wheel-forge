@@ -19,7 +19,12 @@ jobs:
       versionSpec: '3.7'
       architecture: 'x64'
 
-  - ${{ if eq(parameters.os, 'windows') }}:
+  - ${{ if eq(parameters.os, 'windows32') }}:
+
+    - script: choco install vcpython27 -f -y
+      displayName: Install Visual C++ for Python 2.7
+
+  - ${{ if eq(parameters.os, 'windows64') }}:
 
     - script: choco install vcpython27 -f -y
       displayName: Install Visual C++ for Python 2.7

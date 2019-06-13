@@ -4,7 +4,7 @@
 
 ### TL;DR
 
-If you are responsible for an affiliated package and have released a
+If you are responsible for a coordinated package and have released a
 new version, go to the [Azure build](https://dev.azure.com/astropy-project/wheel-forge/_build/) and click **Queue** then **Queue** again in the dialog (or ask someone who has permissions to do so). Once the builds are complete, run:
 
     python get_wheels.py

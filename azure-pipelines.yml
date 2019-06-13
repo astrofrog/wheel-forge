@@ -1,0 +1,26 @@
+jobs:
+
+- template: azure-template.yml
+  parameters:
+    name: Linux32
+    os: linux32
+
+- template: azure-template.yml
+  parameters:
+    name: Linux64
+    os: linux64
+
+- template: azure-template.yml
+  parameters:
+    name: MacOSX
+    os: macosx
+
+- template: azure-template.yml
+  parameters:
+    name: Windows32
+    os: windows32
+
+- template: azure-template.yml
+  parameters:
+    name: Windows64
+    os: windows64

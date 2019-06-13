@@ -1,0 +1,80 @@
+jobs:
+- job: ${{ format(parameters.name) }}
+  pool:
+    ${{ if eq(parameters.os, 'macosx') }}:
+      vmImage: macOS 10.13
+    ${{ if eq(parameters.os, 'linux32') }}:
+      vmImage: Ubuntu 16.04
+    ${{ if eq(parameters.os, 'linux64') }}:
+      vmImage: Ubuntu 16.04
+    ${{ if eq(parameters.os, 'windows32') }}:
+      vmImage: vs2017-win2016
+    ${{ if eq(parameters.os, 'windows64') }}:
+      vmImage: vs2017-win2016
+  strategy:
+    matrix:
+      fast-histogram:
+        package: fast-histogram
+      reproject:
+        package: reproject
+      photutils:
+        package: photutils
+      regions:
+        package: regions
+      astropy-healpix:
+        package: astropy-healpix
+
+  steps:
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
+      architecture: 'x64'
+
+  - ${{ if eq(parameters.os, 'windows32') }}:
+
+    - script: choco install vcpython27 -f -y
+      displayName: Install Visual C++ for Python 2.7
+
+  - ${{ if eq(parameters.os, 'windows64') }}:
+
+    - script: choco install vcpython27 -f -y
+      displayName: Install Visual C++ for Python 2.7
+
+  - script: pip install git+https://github.com/joerick/cibuildwheel
+    displayName: Installing developer version of cibuildwheel
+
+  - script: pip install git+https://github.com/astrofrog/autowheel.git
+    displayName: Installing autowheel
+
+  - script: mkdir wheelhouse
+    displayName: Making wheelhouse directory
+
+  - ${{ if eq(variables['Source.BranchName'], 'master') }}:
+
+    - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --no-build-existing --package=$(package)
+      displayName: Running autowheel
+      ${{ if eq(parameters.os, 'macosx') }}:
+        env:
+          CC: clang
+
+  - ${{ if ne(variables['Source.BranchName'], 'master') }}:
+
+    - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --build-existing --package=$(package)
+      displayName: Running autowheel
+      ${{ if eq(parameters.os, 'macosx') }}:
+        env:
+          CC: clang
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: wheelhouse
+      includeRootFolder: true
+      archiveType: 'tar'
+      tarCompression: 'gz'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/wheels_${{ parameters.os }}.tar.gz'
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: wheels-${{ parameters.os }}-$(package)
+      targetPath: $(Build.ArtifactStagingDirectory)

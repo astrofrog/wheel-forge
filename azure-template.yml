@@ -14,13 +14,10 @@ jobs:
 
   steps:
 
-  - task: CondaEnvironment@1
-    displayName: 'Creating conda environment'
+  - task: UsePythonVersion@0
     inputs:
-      createCustomEnvironment: True
-      environmentName: "wheels"
-      packageSpecs: "python=3.6"
-      cleanEnvironment: True
+      versionSpec: '3.7'
+      architecture: 'x64'
 
   - script: pip install git+https://github.com/joerick/cibuildwheel
     displayName: Installing developer version of cibuildwheel

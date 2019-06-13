@@ -1,5 +1,7 @@
 ## A pipeline for building wheels for Astropy coordinated packages
 
+[![Build Status](https://dev.azure.com/astropy-project/wheel-forge/_apis/build/status/astropy.wheel-forge?branchName=master)](https://dev.azure.com/astropy-project/wheel-forge/_build/latest?definitionId=1&branchName=master)
+
 ### Overview
 
 The aim of this repository is to provide an easy way to automatically
@@ -19,7 +21,7 @@ more recent Numpy version.
 
 ### Configuration
 
-The basic configuration regarding which packages should be built is contained in the autowheel.yml file. The basic syntax for this is documented in the
+The basic configuration regarding which packages should be built is contained in the [autowheel.yml](https://github.com/astropy/wheel-forge/blob/master/autowheel.yml) file. The basic syntax for this is documented in the
 [README for autowheel](https://github.com/astrofrog/autowheel/blob/master/README.rst). Essentially this file should only need to be
 updated if:
 
@@ -34,12 +36,12 @@ autowheel docs).
 
 ### Background on building
 
-The building happens on Azure pipelines and is controlled by the ``azure-pipelines.yml`` and ``azure-template.yml`` file. These should not need to be changed unless there are changes in the way Azure Pipelines operates.
-The builds can be found at LINK. For now, triggering builds needs to be done manually - to do this, go to the previous link for the Azure build and click on 'Queue'.
+The building happens on Azure pipelines and is controlled by the [azure-pipelines.yml](https://github.com/astropy/wheel-forge/blob/master/azure-pipelines.yml) and [azure-template.yml](https://github.com/astropy/wheel-forge/blob/master/azure-template.yml) file. These should not need to be changed unless there are changes in the way Azure Pipelines operates.
+The builds can be found [here](https://dev.azure.com/astropy-project/wheel-forge/_build/). For now, triggering builds needs to be done manually - to do this, go to the previous link for the Azure build and click on 'Queue'.
 
 ### Getting wheels and uploading to PyPI
 
-Once the wheels have been built, they are uploaded as artifacts in Azure Pipelines. The easiest way to get these is to use the ``get_wheels.py``
+Once the wheels have been built, they are uploaded as artifacts in Azure Pipelines. The easiest way to get these is to use the [get_wheels.py](https://github.com/astropy/wheel-forge/blob/master/get_wheels.yml)
 script provided:
 
     python get_wheels.py
@@ -51,4 +53,9 @@ these to PyPI if you wish, using
 ### Further information
 
 Note that in the master branch, only wheels that are missing from PyPI are built, while in pull requests, all wheels are built (to make sure
-that everything is working correctly). This is controlled by the ``--build-existing/--no-build-existing`` flags inside ``azure-template.yml``.
+that everything is working correctly). This is controlled by the ``--build-existing/--no-build-existing`` flags inside [azure-template.yml](https://github.com/astropy/wheel-forge/blob/master/azure-template.yml).
+
+Currently we don't build wheels for Python 2.7 because the way
+cibuildwheel runs tests causes issues with pytest plugins. Since
+Python 2.7 support will shortly be dropped from coordinated packages,
+this will likely not be fixed.

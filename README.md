@@ -68,3 +68,6 @@ Currently we don't build wheels for Python 2.7 because the way
 cibuildwheel runs tests causes issues with pytest plugins. Since
 Python 2.7 support will shortly be dropped from coordinated packages,
 this will likely not be fixed.
+
+When adding a package to [autowheel.yml](https://github.com/astropy/wheel-forge/blob/master/autowheel.yml), be sure to also add it in the matrix in
+[azure-template.yml](https://github.com/astropy/wheel-forge/blob/master/azure-template.yml).

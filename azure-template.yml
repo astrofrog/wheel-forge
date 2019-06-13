@@ -19,6 +19,11 @@ jobs:
       versionSpec: '3.7'
       architecture: 'x64'
 
+  - ${{ if eq(parameters.os, 'windows') }}:
+
+    - script: choco install vcpython27 -f -y
+      displayName: Install Visual C++ for Python 2.7
+
   - script: pip install git+https://github.com/joerick/cibuildwheel
     displayName: Installing developer version of cibuildwheel
 

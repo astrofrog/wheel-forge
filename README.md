@@ -2,6 +2,15 @@
 
 [![Build Status](https://dev.azure.com/astropy-project/wheel-forge/_apis/build/status/astropy.wheel-forge?branchName=master)](https://dev.azure.com/astropy-project/wheel-forge/_build/latest?definitionId=1&branchName=master)
 
+### TL;DR
+
+If you are responsible for an affiliated package and have released a
+new version, go to the [Azure build](https://dev.azure.com/astropy-project/wheel-forge/_build/) and click **Queue** then **Queue** again in the dialog (or ask someone who has permissions to do so). Once the builds are complete, run:
+
+    python get_wheels.py
+
+and upload the wheels for your package with twine.
+
 ### Overview
 
 The aim of this repository is to provide an easy way to automatically

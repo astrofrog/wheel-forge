@@ -28,7 +28,7 @@
 - package_name: regions
   pin_numpy: true
   test_command: pytest -p no:warnings --pyargs regions
-  test_requires: pytest pytest-arraydiff astropy numpy==1.15.4
+  test_requires: pytest pytest-arraydiff astropy==3.1.2 numpy==1.15.4
   python_versions:
     '0.3':
       - cp37
@@ -37,7 +37,7 @@
 - package_name: astropy-healpix
   pin_numpy: true
   test_command: pytest -p no:warnings --pyargs astropy_healpix
-  test_requires: pytest astropy numpy==1.15.4
+  test_requires: pytest astropy==3.1.2 numpy==1.15.4
   python_versions:
     '0.4':
       - cp37

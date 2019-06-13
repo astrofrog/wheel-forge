@@ -15,14 +15,12 @@ jobs:
     name: MacOSX
     os: macosx
 
-# FIXME: cibuildwheel doesn't work on Azure yet, see appveyor.yml
-#
-# - template: azure-template.yml
-#   parameters:
-#     name: Windows32
-#     os: windows32
-#
-# - template: azure-template.yml
-#   parameters:
-#     name: Windows64
-#     os: windows64
+- template: azure-template.yml
+  parameters:
+    name: Windows32
+    os: windows32
+
+- template: azure-template.yml
+  parameters:
+    name: Windows64
+    os: windows64

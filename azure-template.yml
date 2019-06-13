@@ -66,5 +66,5 @@ jobs:
 
   - task: PublishPipelineArtifact@0
     inputs:
-      artifactName: wheels-${{ parameters.os }}
+      artifactName: wheels-${{ parameters.os }}-$(package)
       targetPath: $(Build.ArtifactStagingDirectory)

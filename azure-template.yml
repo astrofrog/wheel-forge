@@ -50,11 +50,21 @@ jobs:
   - script: mkdir wheelhouse
     displayName: Making wheelhouse directory
 
-  - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --build-existing --package=$(package)
-    displayName: Running autowheel
-    ${{ if eq(parameters.os, 'macosx') }}:
-      env:
-        CC: clang
+  - ${{ if eq(variables['Source.BranchName'], 'master') }}:
+
+    - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --no-build-existing --package=$(package)
+      displayName: Running autowheel
+      ${{ if eq(parameters.os, 'macosx') }}:
+        env:
+          CC: clang
+
+  - ${{ if ne(variables['Source.BranchName'], 'master') }}:
+
+    - script: autowheel ${{ parameters.os }} --output-dir=wheelhouse --build-existing --package=$(package)
+      displayName: Running autowheel
+      ${{ if eq(parameters.os, 'macosx') }}:
+        env:
+          CC: clang
 
   - task: ArchiveFiles@2
     inputs:

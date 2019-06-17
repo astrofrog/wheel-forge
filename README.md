@@ -57,7 +57,11 @@ script provided:
 
 This will create a ``wheelhouse`` directory containing all the wheels that have been built. At this point, you can then choose to upload
 these to PyPI if you wish, using
-[twine](https://pypi.org/project/twine/).
+[twine](https://pypi.org/project/twine/).  E.g.:
+
+    twine upload wheelhouse/<pkgname>*.whl
+
+
 
 ### Further information
 

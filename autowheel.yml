@@ -1,14 +1,3 @@
-- package_name: reproject
-  pin_numpy: true
-  test_command: pytest -p no:warnings --pyargs reproject
-  test_requires: pytest-astropy astropy numpy==1.15.4
-  python_versions:
-    '0.5':
-      - cp35
-      - cp36
-      - cp37
-
-
 - package_name: photutils
   pin_numpy: true
   pin_numpy_min: '1.13'

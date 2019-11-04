@@ -13,8 +13,6 @@ jobs:
       vmImage: vs2017-win2016
   strategy:
     matrix:
-      reproject:
-        package: reproject
       photutils:
         package: photutils
       regions:
